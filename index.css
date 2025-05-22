@@ -1,0 +1,838 @@
+:root {
+    /* --- Colors for LIGHT Mode (Mainly white/light gray background with dark text and purple accents) --- */
+    --clr-background-light: #FBFBFB; /* Very subtle off-white */
+    --clr-card-background-light: #FFFFFF; /* Pure White for Cards */
+    --clr-text-primary-light: #222222; /* Near-black for main text */
+    --clr-text-secondary-light: #555555; /* Dark gray for secondary text */
+    --clr-accent-light: #8A2BE2; /* Blue Violet (a vibrant, deep purple) */
+    --clr-border-light: #EEEEEE; /* Very light gray border */
+    --clr-button-bg-light: var(--clr-accent-light);
+    --clr-button-text-light: #FFFFFF;
+    --clr-link-light: var(--clr-accent-light);
+    --clr-link-hover-light: #9932CC; /* Dark Orchid (darker, richer purple) */
+
+    /* For the transparent focus ring (RGB values for --clr-accent-light) */
+    --clr-accent-light-rgb: 138, 43, 226;
+
+    /* --- Typography, Spacing, Shadows --- */
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Playfair Display', serif;
+    --font-size-base: 1rem;
+    --line-height-base: 1.6;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --border-radius-sm: 5px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 20px;
+    --border-radius-circle: 50%;
+    --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* This block sets the default (light mode) values for the _active_ CSS variables */
+body {
+    --clr-background: var(--clr-background-light);
+    --clr-card-background: var(--clr-card-background-light);
+    --clr-text-primary: var(--clr-text-primary-light);
+    --clr-text-secondary: var(--clr-text-secondary-light);
+    --clr-accent: var(--clr-accent-light);
+    --clr-border: var(--clr-border-light);
+    --clr-button-bg: var(--clr-button-bg-light);
+    --clr-button-text: var(--clr-button-text-light);
+    --clr-link: var(--clr-link-light);
+    --clr-link-hover: var(--clr-link-hover-light);
+    --clr-accent-rgb: var(--clr-accent-light-rgb); /* For focus ring */
+
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--clr-text-primary);
+    background-color: var(--clr-background);
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+}
+
+
+/* This block OVERRIDES the active CSS variables when the dark-mode class is applied */
+body.dark-mode {
+    --clr-background: #0D0D0D; /* Very dark almost black background */
+    --clr-card-background: #1A1A1A; /* Slightly lighter dark gray for cards */
+    --clr-text-primary: #F0F0F0; /* Light gray for main text */
+    --clr-text-secondary: #CCCCCC; /* Muted light gray for secondary text */
+    --clr-accent: #BF40BF; /* Medium Orchid (a vibrant purple that pops on dark) */
+    --clr-border: #333333; /* Darker gray border */
+    --clr-button-bg: var(--clr-accent);
+    --clr-button-text: #0D0D0D; /* Dark text for button text in dark mode */
+    --clr-link: var(--clr-accent);
+    --clr-link-hover: #DDA0DD; /* Plum (lighter purple for hover) */
+
+    --clr-accent-rgb: 191, 64, 191; /* RGB values for --clr-accent in dark mode */
+}
+
+
+/* Basic Reset & Box Sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for nav links */
+    /* --- NEW/UPDATED: Account for sticky header height --- */
+    scroll-padding-top: 75px; /* <--- ADJUST THIS VALUE (e.g., to 65px, 75px, etc.) for desktop */
+}
+
+
+a {
+    color: var(--clr-link);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--clr-link-hover);
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-secondary);
+    color: var(--clr-text-primary);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+h1 { font-size: 3.5rem; } /* Large for hero name */
+h2 { font-size: 2.5rem; }
+h3 { font-size: 1.8rem; }
+h4 { font-size: 1.4rem; }
+
+p {
+    margin-bottom: var(--spacing-sm);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Removes extra space below images */
+}
+
+.section {
+    padding: var(--spacing-xl) var(--spacing-lg); /* Top/Bottom padding, Left/Right for content width */
+    margin: 0 auto; /* Center the sections */
+    max-width: 1200px; /* Max width for content */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text within sections */
+}
+
+.card {
+    background-color: var(--clr-card-background);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl); /* Space between sections/cards */
+    box-shadow: var(--shadow-light);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover); /* Subtle lift on hover */
+}
+
+
+/* ===== Navbar Styling ===== */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: var(--clr-card-background);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    z-index: 1000; /* Ensure navbar is on top */
+    display: flex;
+    justify-content: space-between; /* Space out nav and toggle button */
+    align-items: center;
+    border-bottom: 1px solid var(--clr-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hide the menu button by default for larger screens */
+#menu-btn {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    color: var(--clr-text-primary);
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    z-index: 1001; /* Ensure it's on top if shown */
+}
+
+.navbar nav ul {
+    list-style: none;
+    display: flex; /* Display as flex for horizontal desktop nav */
+    gap: var(--spacing-lg); /* Space between nav items */
+    margin: 0; /* Remove default ul margin */
+    padding: 0; /* Remove default ul padding */
+}
+
+.navbar nav ul li a {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    color: var(--clr-text-primary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar nav ul li a:hover,
+.navbar nav ul li a.active {
+    background-color: var(--clr-accent);
+    color: var(--clr-button-text);
+    text-decoration: none;
+}
+
+.toggle-btn {
+    background-color: var(--clr-button-bg);
+    color: var(--clr-button-text);
+    border: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    margin-left: var(--spacing-lg); /* Space from nav */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.toggle-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ===== Hero Section ===== */
+.hero-section {
+    min-height: 80vh; /* Make hero section tall */
+    /* --- UPDATED: Simplified padding. Rely on .section padding and scroll-padding-top --- */
+    padding: var(--spacing-xl) var(--spacing-lg); /* Standard section padding applies */
+
+    display: flex;
+    flex-direction: column; /* Changed to column to stack photo above text on mobile/center */
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Ensure text is centered */
+    background-image: url('https://via.placeholder.com/1920x1080/F0F0F0/D0D0D0?text=Hero+Background'); /* Placeholder for a subtle background image */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden; /* For potential background effects */
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column; /* Stack photo above text */
+    align-items: center;
+    gap: var(--spacing-lg); /* Space between photo and text */
+    max-width: 800px;
+}
+
+.hero-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: var(--border-radius-circle); /* Circular photo */
+    object-fit: cover;
+    border: 3px solid var(--clr-accent); /* Accent border around photo */
+    box-shadow: var(--shadow-light);
+}
+
+.hero-text h1 {
+    font-family: var(--font-secondary); /* This is Playfair Display */
+    font-size: 10.5rem; /* Increased size for full name */
+    margin-bottom: var(--spacing-sm);
+    color: var(--clr-text-primary);
+    line-height: 0.9; /* Tighter line height for very large text */
+}
+
+.hero-text p {
+    font-size: 1.25rem;
+    color: var(--clr-text-secondary);
+    max-width: 600px; /* Limit line length for readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-social-links {
+    margin-top: var(--spacing-md); /* Space above the icons */
+    display: flex;
+    gap: var(--spacing-md); /* Space between icons */
+    justify-content: center; /* Center the icons */
+    align-items: center;
+}
+
+.hero-social-links a {
+    font-size: 2.2rem; /* Size of the icons */
+    color: var(--clr-text-secondary); /* Default icon color */
+    transition: color 0.3s ease, transform 0.2s ease;
+    text-decoration: none; /* Remove underline from icons */
+}
+
+.hero-social-links a:hover {
+    color: var(--clr-accent); /* Accent color on hover */
+    transform: translateY(-3px); /* Subtle lift effect */
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+/* ===== About Section ===== */
+.about-section {
+    text-align: center;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column; /* Stack image above text on smaller screens */
+    align-items: center;
+    gap: var(--spacing-lg);
+    max-width: 900px;
+    margin: 0 auto; /* Center content */
+}
+
+.about-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: var(--border-radius-circle);
+    object-fit: cover;
+    border: 2px solid var(--clr-border); /* Softer border */
+}
+
+.about-text {
+    text-align: left; /* Text aligns left within its container */
+}
+
+.about-text h2 {
+    font-family: var(--font-secondary);
+    color: var(--clr-text-primary);
+    text-align: center; /* Center heading */
+    margin-bottom: var(--spacing-md);
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: var(--line-height-base);
+    color: var(--clr-text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+
+/* ===== Projects Section ===== */
+#projects h2, #services h2, #experience h2, #skills h2, #faq h2, #contact h2 {
+    font-family: var(--font-secondary);
+    color: var(--clr-text-primary);
+    margin-bottom: var(--spacing-xl);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: var(--spacing-lg);
+    width: 100%; /* Take full width of section */
+    max-width: 1000px;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    text-align: left; /* Align text left within card */
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-light);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px); /* Subtle lift */
+    box-shadow: var(--shadow-hover);
+}
+
+.project-card h3 {
+    color: var(--clr-accent);
+    margin-bottom: var(--spacing-sm);
+}
+
+.project-card p {
+    color: var(--clr-text-secondary);
+    flex-grow: 1; /* Allows text to fill space */
+    margin-bottom: var(--spacing-md);
+}
+
+.project-card video {
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--spacing-md);
+    border: 1px solid var(--clr-border); /* Subtle border for video */
+}
+
+.project-btn {
+    display: inline-block;
+    background-color: var(--clr-accent);
+    color: var(--clr-button-text);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: auto; /* Push button to the bottom */
+    align-self: flex-start; /* Align button to the left */
+    transition: background-color 0.3s ease;
+}
+
+.project-btn:hover {
+    background-color: var(--clr-link-hover);
+    text-decoration: none;
+}
+
+/* ===== Services Section ===== */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    width: 100%;
+    max-width: 1000px;
+}
+
+.service-card {
+    background-color: var(--clr-card-background);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.service-card h3 {
+    color: var(--clr-accent);
+    margin-bottom: var(--spacing-sm);
+}
+
+.service-card p {
+    color: var(--clr-text-secondary);
+    font-size: 0.95rem;
+}
+
+/* ===== Experience Section ===== */
+.experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    width: 100%;
+    max-width: 800px;
+    text-align: left; /* Align text left within list items */
+}
+
+.experience-card {
+    background-color: var(--clr-card-background);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-light);
+    transition: box-shadow 0.2s ease;
+}
+
+.experience-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.experience-card h3 {
+    color: var(--clr-accent);
+    margin-bottom: var(--spacing-xs);
+}
+
+.experience-date {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--clr-text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.experience-card p {
+    font-size: 1rem;
+    color: var(--clr-text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.certificate-img {
+    max-width: 200px; /* Adjust size as needed */
+    height: auto;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--clr-border);
+    margin-top: var(--spacing-sm); /* Space above image */
+}
+
+/* ===== Skills Section ===== */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl); /* More space between categories */
+    width: 100%;
+    max-width: 900px;
+    text-align: left; /* Align category headings left */
+}
+
+.skills-category h3 {
+    color: var(--clr-accent);
+    margin-bottom: var(--spacing-md);
+    text-align: center; /* Center category heading */
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center; /* Center skill cards */
+}
+
+.skill-card {
+    background-color: var(--clr-background); /* Lighter background for skill tags */
+    border: 1px solid var(--clr-border);
+    border-radius: var(--border-radius-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.9rem;
+    color: var(--clr-text-primary);
+    white-space: nowrap; /* Prevent wrapping inside card */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.skill-card:hover {
+    background-color: var(--clr-accent);
+    color: var(--clr-button-text);
+    border-color: var(--clr-accent);
+}
+
+/* ===== FAQ Section ===== */
+.faq-container {
+    width: 100%;
+    max-width: 800px;
+    text-align: left;
+}
+
+.faq-item {
+    background-color: var(--clr-card-background);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
+    box-shadow: var(--shadow-light);
+    transition: box-shadow 0.2s ease;
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.faq-question {
+    color: var(--clr-accent);
+    cursor: pointer;
+    margin-bottom: var(--spacing-xs); /* Space below question, before answer */
+    position: relative;
+    padding-right: var(--spacing-lg); /* Space for expansion icon */
+}
+
+/* Simple expand/collapse - you'll need JS for this functionality */
+.faq-answer {
+    color: var(--clr-text-secondary);
+    font-size: 0.95rem;
+    margin-top: var(--spacing-xs); /* Space above answer */
+    /* Hide by default, show with JS */
+    display: none;
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--clr-border);
+}
+
+.faq-item.active .faq-answer {
+    display: block; /* Show when active */
+}
+
+/* Plus/Minus icon for FAQ (needs JS to toggle) */
+.faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--clr-text-primary);
+}
+
+.faq-item.active .faq-question::after {
+    content: '-';
+}
+
+
+/* ===== Contact Section ===== */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 600px;
+    margin: var(--spacing-md) auto;
+    gap: var(--spacing-md);
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    background-color: var(--clr-card-background);
+    color: var(--clr-text-primary);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: var(--clr-accent);
+    box-shadow: 0 0 0 2px rgba(var(--clr-accent-rgb), 0.2);
+}
+
+#contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+#contact-form button {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background-color: var(--clr-button-bg);
+    color: var(--clr-button-text);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#contact-form button:hover {
+    background-color: var(--clr-link-hover);
+    transform: translateY(-2px);
+}
+
+
+.contact-info {
+    margin-top: var(--spacing-lg);
+    text-align: center;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-info p {
+    margin-bottom: var(--spacing-xs);
+}
+
+.contact-info a {
+    font-weight: 500;
+}
+
+
+/* ===== Footer ===== */
+.footer-card {
+    text-align: center;
+    padding: var(--spacing-md);
+    background-color: var(--clr-card-background);
+    border-top: 1px solid var(--clr-border);
+    margin-top: var(--spacing-xl);
+    margin-bottom: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.footer-card p {
+    color: var(--clr-text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+
+/* ===== Responsive Styles (Mobile First Overrides) ===== */
+@media (max-width: 768px) {
+    /* --- NEW/UPDATED: Account for sticky header height on mobile --- */
+    html {
+        scroll-padding-top: 60px; /* <--- ADJUST THIS VALUE for mobile */
+    }
+
+    .navbar {
+        padding: var(--spacing-sm) var(--spacing-md);
+        justify-content: space-between;
+    }
+
+    /* Show the menu button only on small screens */
+    #menu-btn {
+        display: block; /* Make the hamburger icon visible */
+    }
+
+    /*
+     * The main navigation list (the UL with id="nav-list")
+     * Apply initial hiding and transition directly to this element.
+     * Ensure padding also collapses/expands with the menu.
+     */
+    #nav-list {
+        position: absolute;
+        top: 100%; /* Position right below the navbar */
+        left: 0;
+        width: 100%;
+        background-color: var(--clr-card-background);
+        border-top: 1px solid var(--clr-border);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 999;
+
+        /* Hiding properties for when the menu is closed */
+        max-height: 0;
+        overflow: hidden; /* Crucial for clipping content when max-height is active */
+        padding-top: 0; /* START WITH NO PADDING when closed */
+        padding-bottom: 0; /* START WITH NO PADDING when closed */
+
+        /* Layout properties for the list items when the menu opens */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-sm); /* Gap between list items */
+
+        /* Animate max-height AND padding for a smooth open/close */
+        transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    }
+
+    /* When the 'show' class is added by JS, reveal the menu */
+    #nav-list.show {
+        max-height: 400px; /* Increase this if your menu items take more height */
+        /* Apply desired padding when the menu is open */
+        padding-top: var(--spacing-md);
+        padding-bottom: var(--spacing-md);
+        /* display: flex; is already set above, no need to redeclare */
+    }
+
+    /*
+     * Adjust the parent <nav> and its immediate <ul> child to ensure
+     * they don't interfere with the #nav-list hiding/showing.
+     * The `navbar nav ul` selector needs to be carefully managed.
+     */
+    .navbar nav {
+        flex-grow: 1; /* Allow nav to take available space */
+        display: flex; /* Keep it flex to contain the ul */
+        justify-content: flex-end; /* Pushes the UL to the right */
+        align-items: center; /* Vertically align items in the nav */
+        /* Crucially, NO height, max-height, or overflow properties here that would hide the ul */
+    }
+
+    /*
+     * This rule from the previous CSS was for the UL, but we've moved the hiding/showing
+     * to #nav-list directly. Keep this for general layout of the list items
+     * *within* the visible menu, but remove redundant hiding properties.
+     */
+    .navbar nav ul {
+        width: 100%; /* Ensure UL takes full width of NAV */
+        /* REMOVE this padding if it was present: padding: var(--spacing-md) 0; */
+    }
+
+    /* Make links fill space for easier tapping */
+    .navbar nav ul li a {
+        display: block;
+        padding: var(--spacing-sm);
+        width: 100%;
+    }
+
+    /* Adjust theme toggle button for mobile layout */
+    .toggle-btn {
+        margin-left: var(--spacing-sm);
+        margin-top: 0;
+    }
+
+    /* --- UPDATED: Hero Section padding for mobile --- */
+    .hero-section {
+        padding: var(--spacing-lg) var(--spacing-md); /* Standard mobile padding for sections */
+        min-height: 60vh;
+    }
+
+    .hero-content {
+        gap: var(--spacing-md);
+    }
+
+    .hero-photo {
+        width: 140px;
+        height: 140px;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+    }
+
+    .hero-text p {
+        font-size: 1.05rem;
+    }
+
+    .hero-social-links {
+        margin-top: var(--spacing-sm);
+        gap: var(--spacing-sm);
+    }
+    .hero-social-links a {
+        font-size: 1.8rem; /* Smaller icons on mobile */
+    }
+
+    .about-photo {
+        width: 140px;
+        height: 140px;
+    }
+
+    .about-text {
+        text-align: center;
+    }
+
+    .about-text p {
+        font-size: 1rem;
+    }
+
+    .section {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .card {
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    /* Ensure grids stack to single column */
+    .project-grid,
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .project-card, .service-card, .experience-card, .faq-item {
+        padding: var(--spacing-md);
+    }
+
+    #contact-form {
+        width: 90%;
+    }
+
+    /* General heading adjustments for mobile */
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.4rem; }
+}
